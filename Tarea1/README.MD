@@ -3,9 +3,8 @@
 El enunciado de la tarea 1 lo encuentra en el archivo Tarea1-Laboratorio.pdf
 
 # Actualización
-El archivo pdf del enunciado fue actualizado. A grandes rasgos, los cambios son:
+El archivo pdf del enunciado fue actualizado. Agradecemos a Tomas por sus observaciones. A grandes rasgos, los cambios son:
 - No considerar coliciones. Si dos palabras entregan el mismo hash, cuentelas como si fueran la misma palabra.
-- Actualizada funcion de hash hasta l-1.
 - En caso que el hash calculado sea mayor a un millon (1.000.000), el hash correspondiente será el resto de la división por 1.000.000 del hash calculado.
 - Arreglos en ejemplo de archivos de entrada/salida
 
