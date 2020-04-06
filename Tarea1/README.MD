@@ -3,7 +3,7 @@
 El enunciado de la tarea 1 lo encuentra en el archivo Tarea1-Laboratorio.pdf
 
 # Actualización
-**El código inicial debe ser actualizado. La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea. **
+**El código inicial debe ser actualizado. La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea.**
 
 Linea 10, donde dice: 
 ```
