@@ -3,6 +3,18 @@
 El enunciado de la tarea 1 lo encuentra en el archivo Tarea1-Laboratorio.pdf
 
 # Actualización
+**El código inicial debe ser actualizado. La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea.**
+
+Linea 10, donde dice: 
+```
+while ( fgets (linea, 60, fp) != NULL ) {
+```
+Debe decir:
+```
+while ( fgets (linea, 1000, fp) != NULL ) {
+```
+
+
 El archivo pdf del enunciado fue actualizado. Agradecemos a Tomas por sus observaciones. A grandes rasgos, los cambios son:
 - No considerar coliciones. Si dos palabras entregan el mismo hash, cuentelas como si fueran la misma palabra.
 - En caso que el hash calculado sea mayor a un millon (1.000.000), el hash correspondiente será el resto de la división por 1.000.000 del hash calculado.
