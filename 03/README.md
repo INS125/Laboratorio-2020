@@ -50,6 +50,30 @@ int main(void) {
 }
 ```
 
+
+## strlen()
+
+La función strlen(), parte de string.h, sirve para obtener el largo de una cadena de caracteres.
+
+```
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+
+  char palabra[10] = "HOLA";
+  int largo = strlen(palabra);
+
+  printf("El largo de la cadena es %d",largo);
+  
+  return 0;
+}
+```
+Este programa imprimirá `El largo de la cadena es 4`
+
+
+
+
 ## Convertir un valor char a un entero
 
 La función `atoi(numeroenchar)` convierte un char a un entero. Esta función es parte de la biblioteca stdlib.h, por lo tanto deben agregar el macro `#include <stdlib.h>`
