@@ -52,7 +52,7 @@ int main(void) {
 
 ## Convertir un valor char a un entero
 
-La función `atoi(numeroenchar)` convierte un char a un entero. 
+La función `atoi(numeroenchar)` convierte un char a un entero. Esta función es parte de la biblioteca stdlib.h, por lo tanto deben agregar el macro `#include <stdlib.h>`
 
 ```
 char numerocomoletra[10] = "123";
