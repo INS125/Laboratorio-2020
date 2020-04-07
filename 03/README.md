@@ -8,7 +8,7 @@ Recordemos que en C, la forma de representar una cadena de caracteres es a trav�
 
 Por lo tanto, este programa es válido para realizar una asignación
 
-```
+```c
 #include <stdio.h>
 
 int main(void) {
@@ -21,7 +21,7 @@ int main(void) {
 
 Sin embargo, si queremos realizar la asignación de la cadena en una instrucción distinta a la de declaración, sucede esto:
 
-```
+```c
 #include <stdio.h>
 
 int main(void) {
@@ -37,7 +37,7 @@ int main(void) {
 Para solucionarlo, podemos usar la función strcpy de la biblioteca string.h. Esta función se invoca como  `strcpy(dest, src)` y copia la cadena de `src` en `dest`.
 
 Por lo tanto, una correcta asignación sería:
-```
+```c
 #include <stdio.h>
 #include <string.h>
 
@@ -55,7 +55,7 @@ int main(void) {
 
 La función strlen(), parte de string.h, sirve para obtener el largo de una cadena de caracteres.
 
-```
+```c
 #include <stdio.h>
 #include <string.h>
 
@@ -78,7 +78,7 @@ Este programa imprimirá `El largo de la cadena es 4`
 
 La función `atoi(numeroenchar)` convierte un char a un entero. Esta función es parte de la biblioteca stdlib.h, por lo tanto deben agregar el macro `#include <stdlib.h>`
 
-```
+```c
 char numerocomoletra[10] = "123";
 int numerocomoentero = atoi(numerocomoletra);
 ```
