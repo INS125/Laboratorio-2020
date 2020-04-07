@@ -50,3 +50,11 @@ int main(void) {
 }
 ```
 
+## Convertir un valor char a un entero
+
+La función `atoi(numeroenchar)` convierte un char a un entero. 
+
+```
+char numerocomoletra[10] = "123";
+int numerocomoentero = atoi(numerocomoletra);
+```
