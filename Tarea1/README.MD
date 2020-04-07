@@ -20,6 +20,8 @@ El archivo pdf del enunciado fue actualizado. Agradecemos a Tomas por sus observ
 - En caso que el hash calculado sea mayor a un millon (1.000.000), el hash correspondiente será el resto de la división por 1.000.000 del hash calculado.
 - Arreglos en ejemplo de archivos de entrada/salida
 
+- 07/04/2020 Actualizado salida de ejemplo2, el hash generado por la palabra revolutionary.
+
 # Evaluación
 Para evaluar su tarea, se utilizarán 2 archivos de entrada, con distintos textos y distintos valores de k. 
 
