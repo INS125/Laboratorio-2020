@@ -3,7 +3,19 @@
 El enunciado de la tarea 1 lo encuentra en el archivo Tarea1-Laboratorio.pdf
 
 # Actualización
-**El código inicial debe ser actualizado. La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea.**
+**El código inicial debe ser actualizado.**
+
+- La linea 8, en la declaración del arreglo char linea, debe cambiar el tamaño de linea a 5000 elementos.
+Linea 8, donde dice: 
+```
+char linea[255];
+```
+Debe decir:
+```
+char linea[5000];
+```
+
+- La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea.**
 
 Linea 10, donde dice: 
 ```
