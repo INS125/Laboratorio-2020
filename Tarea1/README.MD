@@ -3,7 +3,40 @@
 El enunciado de la tarea 1 lo encuentra en el archivo Tarea1-Laboratorio.pdf
 
 # Actualización
-**El código inicial debe ser actualizado. La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea.**
+
+**(14/04/2020)**
+Luego de haber recibido la tarea N° 1 de laboratorio, notamos que cometieron muchos errores triviales los cuales, a pesar de haber realizado avances en su tarea, hacen imposible su revisión, por lo que tendrían la nota mínima. En otras palabras, si su programa no escribe un archivo con el formato explicado en los ejemplos, su tarea no será revisada dado que el proceso de revisión es automatizado.
+
+Por lo tanto, hemos decidido otorgar un plazo extra para subsanar solo este problema hasta HOY Martes 14 de abril a las 20:00 hrs. 
+
+Usted podrá hacer nuevos commits en su repositorio solucionando problemas que hagan imposible su revisión de manera automatizada, como:
+
+- Programa no lee archivo de entrada o lee un archivo de entrada con nombre distinto a entrada.txt.
+- Programa no genera un archivo de salida o el archivo de salida tiene un nombre distinto a salida.txt
+- Programa genera un archivo de salida en un formato distinto a <HASH><ESPACIO><CONTADOR>. Escribir el hash correspondiente y el contador de las veces que se encuentra ese hash separados por un solo espacio en blanco.
+- Programa recibe parámetros o valores ingresados por teclado que detienen su ejecución.
+- Programa no compila con el comando gcc main.c -lm -o main.o
+
+Si su tarea contiene alguno de estos errores y estos no son subsanados en la fecha dada, usted tendrá la nota mínima.
+
+Esta es una oportunidad excepcional, que se dará solo por esta vez. Las próximas tareas tendrán formatos de revisión similares y si su programa no cumple con los especificado para su revisión, su calificación será mínima.
+
+
+# Actualizaciones previas
+
+El código inicial debe ser actualizado.
+
+- La linea 8, en la declaración del arreglo char linea, debe cambiar el tamaño de linea a 5000 elementos.
+Linea 8, donde dice: 
+```
+char linea[255];
+```
+Debe decir:
+```
+char linea[5000];
+```
+
+- La función fgets de la linea 10 debe ser invocada con un buffer de tamaño 1000. Ese buffer corresponde a la cantidad máxima de caracteres que se leerán por linea.**
 
 Linea 10, donde dice: 
 ```
