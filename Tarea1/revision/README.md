@@ -1,0 +1,1 @@
+En esta carpeta encuentra los archivos de entrada.txt y la salida deseada.
