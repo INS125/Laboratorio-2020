@@ -1,6 +1,6 @@
 # Tarea 2 - Suma y Convolución de Matrices
 
-El enunciado de la tarea 2 lo encuentra en el archivo Tarea2-LaboratorioMatriz
+El enunciado de la tarea 2 lo encuentra en el archivo Tarea2-LaboratorioMatriz.pdf
 
 # Evaluación
 
