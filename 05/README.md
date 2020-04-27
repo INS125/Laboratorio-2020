@@ -7,9 +7,9 @@ Una matriz debe ser declarada como un doble puntero. En resumen, consiste en dec
 
 ```c
 int** Matriz; 
-Matriz = (int**)malloc(sizeof(int)*ancho); 
+Matriz = (int**)malloc(sizeof(int**)*ancho); 
 for(int i = 0; i<ancho; i++){
-	Matriz[i] = (int*)malloc(sizeof(int) * alto); //
+	Matriz[i] = (int*)malloc(sizeof(int*) * alto); //
 }
 ```
 
@@ -38,9 +38,9 @@ El codigo final es
 
 int **CrearMatriz(int ancho, int alto){
   int** Matriz;
-  Matriz = (int**)malloc(sizeof(int)*ancho);
+  Matriz = (int**)malloc(sizeof(int**)*ancho);
   for(int i = 0; i<ancho; i++){
-    Matriz[i] = (int*)malloc(sizeof(int) * alto); //
+    Matriz[i] = (int*)malloc(sizeof(int*) * alto); //
   }
 
   return Matriz;
