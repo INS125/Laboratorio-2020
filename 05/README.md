@@ -6,11 +6,12 @@ En esta actividad revisaremos como utilizar la memoria heap para almacenar datos
 Una matriz debe ser declarada como un doble puntero. En resumen, consiste en declarar un arreglo, dentro de los elementos del arreglo. Este segmento de código crea una matriz de  N\*M 
 
 ```c
-int** Matriz; 
-Matriz = (int**)malloc(sizeof(int*)*ancho); 
-for(int i = 0; i<ancho; i++){
-	Matriz[i] = (int*)malloc(sizeof(int) * alto); //
-}
+int** Matriz;
+  Matriz = (int**)malloc(sizeof(int*)*alto);
+  for(int i = 0; i<alto; i++){
+    Matriz[i] = (int*)malloc(sizeof(int) * ancho); //
+  }
+
 ```
 
 Una vez declarada la matriz, puedo acceder a ella a traves de procedimientos, entregandole Matriz como referencia. En el ejemplo, se declara la funcion `RellenarConRandom()` la cual accede por referencia a la matriz `Matriz`, invocandola como `RellenarConRandom(M, ancho, alto)`
