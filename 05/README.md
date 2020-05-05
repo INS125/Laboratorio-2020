@@ -38,9 +38,9 @@ El codigo final es
 
 int **CrearMatriz(int ancho, int alto){
   int** Matriz;
-  Matriz = (int**)malloc(sizeof(int*)*ancho);
-  for(int i = 0; i<ancho; i++){
-    Matriz[i] = (int*)malloc(sizeof(int) * alto); //
+  Matriz = (int**)malloc(sizeof(int*)*alto);
+  for(int i = 0; i<alto; i++){
+    Matriz[i] = (int*)malloc(sizeof(int) * ancho); //
   }
 
   return Matriz;
@@ -69,7 +69,7 @@ void Imprimir(int **matriz, int tam_filas, int tam_columnas){
 int main(void) {
 
   int ancho=10;
-  int alto = 5;
+  int alto =10;
 
   int **M;
   srand(time(NULL));
@@ -86,8 +86,15 @@ int main(void) {
   printf("\n\nMatriz despues de rellenar\n\n");
   Imprimir(M, ancho, alto);
  
-  for(int i=0; i<alto; i++)
+  // LIBERA MEMORIA DE LA MATRIZ
+  for(int i=0; i<ancho; i++)
   	free(*(M+i));
+  free(M);
+
+  // SI MOSTRAMOS LA MATRIZ LUEGO DE ELIMINARLA, ARROJA SEGMENTATION FAULT
+  printf("\n\nMatriz despues de Eliminar\n\n");
+  Imprimir(M, ancho, alto);
+
 
   return 0;
 }
