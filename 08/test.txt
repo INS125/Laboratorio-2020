@@ -1,0 +1,15 @@
+matias;01-01-1995
+ignacio;01-01-1996
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1997
+carlos;01-01-1990
+carlos;01-01-1991
+carlos;01-01-1993
