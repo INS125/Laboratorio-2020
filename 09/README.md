@@ -61,7 +61,7 @@ ancestro(HIJO) :-
         ancestro(X).
 ```
 Al evaluar la regla `ancestro(anacleto)`, la salida será:
-```prolog
+```
 Un acestro de anacleto es celino                                                                                                                
 Un acestro de celino es rodrigo                                                                                                                 
 Un acestro de rodrigo es alberto                                                                                                                
