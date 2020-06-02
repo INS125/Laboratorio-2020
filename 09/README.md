@@ -68,3 +68,44 @@ Un acestro de rodrigo es alberto
 Un acestro de alberto es juan 
 ```
 
+# Programa final
+
+```
+padre(juan, alberto).
+padre(juan, jose).
+padre(juan, pedrito).
+padre(alberto, rodrigo).
+padre(rodrigo, celino).
+padre(celino, anacleto).
+
+
+main:-
+        %todos_los_hijos(juan),
+        %el_padre_de(rodrigo),
+        %el_abuelo_de(rodrigo),
+        ancestro(anacleto),nl,nl,
+        
+        halt.
+
+todos_los_hijos(PADRE) :- 
+    forall( padre(PADRE, X), (write(X),nl) ) .
+
+
+el_padre_de(HIJO) :- 
+    padre(X,HIJO),
+    write('El padre de '), write(HIJO), write(' ES '),write(X).
+
+el_abuelo_de(NIETO) :- 
+    padre(X,NIETO),
+    padre(Y,X),
+    write('El abuelo de '),write(NIETO),write(' ES '), write(Y).
+
+ancestro(HIJO) :- 
+    padre(X, HIJO) ->
+        write('Un acestro de '),write(HIJO),write(' es '),write(X),nl,
+        ancestro(X).
+ 
+
+:- main.
+
+```
