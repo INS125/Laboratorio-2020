@@ -24,4 +24,4 @@ Utilice el foro de [issues de este repositorio](https://github.com/INS125/Labora
 
 # Como utilizar GIT en windows (o en cualquier SO)
 
-En [este video pueden ver como utilizar git](https://us-lti.bbcollab.com/collab/ui/session/playback), para subir sus trabajos, en su propio computador. Gracias a Pancho Cordero por el video.
+En [este video pueden ver como utilizar git](https://us-lti.bbcollab.com/collab/ui/session/playback/load/2e6e301cb0a64310a0d6f1177372ab51), para subir sus trabajos, en su propio computador. Gracias a Pancho Cordero por el video.
