@@ -2,7 +2,7 @@
 
 ## Aclaraciones y actualizaciones:
 (15-Jun): Corrección de errores en el diagrama de clases. La asociación correspondiente es composición. El diagrama de clases actualizado se muestra aquí.
-![Diagrama de clases](/img/d1.png)
+![Diagrama de clases](/Tarea5/img/d1.png)
 
 
 - El ganador del juego es aquel que termine el tablero con mas dinero a su haber.
