@@ -2,6 +2,7 @@
 
 ## Aclaraciones y actualizaciones:
 (16-Jun): Se da una prorroga en el plazo para la entrega de esta tarea hasta el Sábado 20 de Junio.
+
 (15-Jun): Corrección de errores en el diagrama de clases. La asociación correspondiente es composición. El diagrama de clases actualizado se muestra aquí.
 ![Diagrama de clases](/Tarea5/img/d1.png)
 
