@@ -176,14 +176,92 @@ Observamos que, si bien tardó mas tiempo, la lista contador si contiene valores
 
 ## Multiples hilos
 
+Como vimos en el ejemplo anterior, el utilizar multiples procesos es mas rápido que utilizar multiples hilos. Veamos que pasa ahora si, en vez de ejecutar una función que realiza cómputo en la CPU (como la funcion contar_hasta), ejecutamos una función que simplemente espera.
+
+```python
+def dormir_hasta(n):
+	start = time.time()
+
+	time.sleep(n)
+	
+	tomo = time.time()-start
+	print("Esto se demoro",tomo)
+	return n
+```
+
+Si lo ejecutamos en multiples procesos
+
+```python
+if __name__ == '__main__':
+	
+	ex = ProcessPoolExecutor(max_workers=8)
+	
+	print("Hola estoy comenzando la ejecucion")
+	
+	resultado = list(ex.map(dormir_hasta, dormir))
+
+	print("Chao me voy a almorzar")
+	print(resultado)
+	print(valores)
+```
+La salida del programa será:
+```
+Hola estoy comenzando la ejecucion
+Esto se demoro 1.0003166198730469
+Esto se demoro 3.0031185150146484
+Esto se demoro 3.00307035446167
+Esto se demoro 4.003916501998901
+Esto se demoro 5.003007888793945
+Esto se demoro 6.004042387008667
+Esto se demoro 7.003390789031982
+Esto se demoro 8.007596254348755
+Chao me voy a almorzar
+[1, 6, 4, 8, 3, 7, 3, 5]
+[14724292, 98582115, 46434954, 53716608, 73600540, 24820679, 55962544, 11746328]
+[Finished in 8.1s]
+```
+Mientras que si cambiamos el objeto `ex` a uno de la clase `ThreadPoolExecutor` 
+
+
+```python
+if __name__ == '__main__':
+	
+	ex = ThreadPoolExecutor(max_workers=8)
+	
+	print("Hola estoy comenzando la ejecucion")
+	
+	resultado = list(ex.map(dormir_hasta, dormir))
+
+	print("Chao me voy a almorzar")
+	print(resultado)
+	print(valores)
+```
+La salida será:
+```
+Hola estoy comenzando la ejecucion
+Esto se demoro 1.0010466575622559
+Esto se demoro 3.001880407333374
+Esto se demoro 3.0022623538970947
+Esto se demoro 4.002374887466431
+Esto se demoro 5.001781702041626
+Esto se demoro 6.005478382110596
+Esto se demoro 7.005982398986816
+Esto se demoro 8.006256341934204
+Chao me voy a almorzar
+[1, 6, 4, 8, 3, 7, 3, 5]
+[14724292, 98582115, 46434954, 53716608, 73600540, 24820679, 55962544, 11746328]
+[Finished in 8.1s]
+```
+
+Se observa que, tanto en concurrencia de procesos como de hilos, ambas ejecuciones tardaron lo mismo. Entonces, en casos como este, es mejor utilizar threads.
 
 
 ### Global Interpreter Lock (GIL)
 
-GIL es un mecanismo que impide que multiples Threads modifiquen objetos a la vez, e impedir que ocurran condiciones de carrera. Los métodos de python que usen el GIL se consideran Thread-safe, es decir, que son seguros para su utilización en multiples hilos.
+GIL es un mecanismo que impide que multiples Threads modifiquen objetos a la vez, e impedir que ocurran condiciones de carrera. Los métodos de python que usen el GIL se consideran Thread-safe, es decir, que son seguros para su utilización en multiples hilos. La labor del GIL es que el interprete de python no puede interpretar bytecode de manera concurrente. 
 
 # Conclusión
 
-- Cuando tenemos un programa o subprograma en el que gran parte del tiempo lo utiliza realizando computo, debemos utilizar un sistema multiproceso.
+- Cuando tenemos un programa o subprograma en el que gran parte del tiempo lo utiliza realizando computo, debemos utilizar un sistema multiproceso, ya que este puede evitar el GIL.
 
-- Por otra parte, cuando tenemos un sistema en el que gran parte de la ejecución se utiliza esperando respuestas (IDLE), como solicitudes http o utilizacion de entrada/salida de archivos, deberíamos utilizar threads.
+- Por otra parte, cuando tenemos un sistema en el que gran parte de la ejecución se utiliza esperando respuestas (IDLE), como solicitudes http o metodos de entrada/salida de archivos, deberíamos utilizar threads.
