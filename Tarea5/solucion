@@ -1,0 +1,231 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jul 19 06:56:28 2020
+
+@author: llxbel
+"""
+
+#Debo importar la librería de aleatoridad. En mi caso personal, yo accedo a ella facilmente colocandole un prefijo rd
+import random as rd
+
+#Defino a la clase jugador junto a sus atributos
+class Jugador:
+    def __init__(self,nombre,figura,dineroInicial,turno,casilla):
+        self.nombre = nombre
+        self.figura = figura
+        self.dineroInicial = dineroInicial
+        self.turno = turno
+        self.casilla = casilla
+        self.propiedades = list()
+        self.tableroTerminado = False
+	
+    #Realizo una clase string para llamarlo más fácilmente
+    def __str__(self):
+        return """{}""".format(self.nombre)    
+    
+    #Realizo una método para tirar el dado, que lo único que va a hacer es elegir un número aleatorio entre 1 y 6
+    def tirarDado(self):
+        n = rd.randint(1, 6)
+        return n
+
+#Defino la clase casilla, junto a todos sus atributos
+class Casilla:
+    def __init__(self, nombre, casilla, tipo):
+        self.nombre = nombre
+        self.casilla = casilla
+        self.tipo = tipo
+    
+    #Vuelvo a llamar a la clase string
+    def __str__(self):
+        return """{}""".format(self.nombre)
+
+#Defino a la clase Propiedad como una herencia de Casilla, junto a sus atributos
+class Propiedad(Casilla):
+	def __init__(self, nombre, casilla, tipo, precioCompra):
+        
+		Casilla.__init__(self, nombre, casilla, tipo)
+		self.dueno = list()
+		self.precioCompra = precioCompra
+
+#Defino a la clase Carcel como una herencia de Casilla, junto a sus atributos
+class Carcel(Casilla):
+	def __init__(self, nombre, casilla, tipo, fianza):
+		Casilla.__init__(self, nombre, casilla, tipo)
+		self.fianza = fianza
+		self.prontuario = 0
+
+#Defino a la clase Partida, la cual realizará todo el juego
+class Partida():
+    def __init__(self, entrada):
+        self.jugadores = list()
+        self.celdas = list()
+
+        # Se procede a abrir un archivo de lectura
+        with open(entrada, "r") as lectura:
+			# Se pasan los datos de los archivos como una lista, y se van a separar por su espacio
+            datos_archivo = lectura.readline().split(" ")
+            datos_archivo = datos_archivo[:5]+[datos_archivo[5][:-1]]
+
+            #Declaro el número de participantes:
+            participantes = datos_archivo[0]
+
+            #Declaro el número de celdas que utilizaré:
+            num_celdas = datos_archivo[1]
+            
+			# Declaro la semilla a utilizar:
+            rd.seed(int(datos_archivo[2]))
+			
+			# Coy leyendo cada uno de los participantes. Para esto, debo separarlos tanto pro su espacio como por su quiebre de línea
+            for turno in range(int(datos_archivo[0])):
+                line = lectura.readline()
+                line = line.rstrip("\n").split(" ")
+                jugador = line[0]                                           #Aquí obtengo el nombre del jugador
+                figura = line[1]                                            #Aquí obtengo la figura que este utilizará
+                
+                self.jugadores.append(Jugador(jugador, figura, int(datos_archivo[5]), 0, 0)) #Coloco todos los datos necesarios 
+
+		# Se crean de manera aleatoria las celdas de Propiedad y de Carcel. para esto, se toma el número de celdas y se elije aleatoriamente
+        # En este caso, si el número era 1 se escojía carcel, sino se escojía propiedad.
+                
+        for i in range(int(num_celdas)):
+			# Si es 1 creo una carcel
+            aux = rd.randint(0,1) 
+            if  aux == 1:
+                self.celdas.append(Carcel("Carcel",i+1, "Carcel", int(datos_archivo[4])))
+            else:
+                self.celdas.append(Propiedad("Propiedad", i+1 , "Propiedad", int(datos_archivo[3])))
+
+    def elegirJugador(self):
+        
+        #Creo una lista vacía
+        orden = list()
+        
+#       #Después escojo al resto        
+        for i in range(len(self.jugadores)):
+            orden.append(self.jugadores[i])
+          
+        #Retorno la lista con el orden
+        return orden
+	
+    def jugar(self, jugador, dados):
+		#Se declara el jugador y los dados:
+        turno = jugador.turno        
+        
+        # Hago que se aumente el turno
+        turno = turno + 1
+
+		# Hago que se avance según la cantidad de datos
+        casilla = jugador.casilla + dados
+
+        #Retorno el turno y la casilla
+        return (turno, casilla)
+	
+    #Realizo el método accionCasilla, el cual me permite ver en qué tipo de casilla cae el jugador.
+    #Para hacerlo más fácil, sólo se coloca el dinero restante que se cobrará al jugador si cae en Propiedad o en Carcel
+    def accionCasilla(self, jugador, tipo):
+        if tipo == 'Propiedad':
+            dineroRestante = jugador.dineroInicial - self.celdas[jugador.casilla-1].precioCompra
+        elif tipo == 'Carcel':
+            dineroRestante = jugador.dineroInicial - self.celdas[jugador.casilla-1].fianza
+
+        #Finalmente, se devuelve el dinero restante
+        return dineroRestante
+	
+    #Realizo el método de simulación, el cual me simulará la partida entera. Para esto, debo entregarle como parámetro de entrada
+    #un texto de salida.
+
+    def finalizarPartida(self):
+        #Defino un monto mínimo para el jugador que vaya a ganar
+        montoGanador = 0
+        
+        #Inspecciono a todos los jugadores. El jugador que cuente con el mayor monto es el ganador.
+        for jugador in self.jugadores:
+            if jugador.dineroInicial > montoGanador:
+                #Se retorna el nombre del ganador
+                return jugador
+            
+    def simulacion(self,salida):
+        
+        #Abro el documento
+        impresion = open(salida, "w")
+        
+        #Inicio desde 0
+        i = 0
+        
+        #Realizo un ciclo while que va a operar hasta que se termine la partida de todo el juego
+        while self.partidaTerminada:
+
+            #Llamo a todos los jugadores de la partida y posteriormente los voy avanzando
+            jugador = self.jugadores[i]
+            i += 1
+
+            #Si el jugador aún no termina el tablero:
+            if jugador.tableroTerminado == False:
+    			
+                #Tiro los dados
+                dado = jugador.tirarDado()
+    
+                # Hago que se tome el turno y la casilla del jugador
+                jugador.turno = self.jugar(jugador, dado)[0]
+                jugador.casilla = self.jugar(jugador, dado)[1]
+    
+    			#Si ya no me quedan más casillas por recorrer, se terminar el tablero para el jugador y se le cambia
+                #por verdadero
+                if jugador.casilla > len(self.celdas):
+                    jugador.tableroTerminado = True
+                
+                #Pero si me quedaran más casillas por recorrer, tengo que comprobar que el jugador tenga el dinero o no.
+                #Si el jugador no cuenta con el dinero, entonces no puede seguir jugando
+                else:
+                    casilla = self.celdas[jugador.casilla-1]
+                    if casilla.tipo == "Propiedad":
+                        if jugador.dineroInicial >= casilla.precioCompra:
+                            jugador.dineroInicial = self.accionCasilla(jugador, "Propiedad")
+    
+                    elif casilla.tipo == "Carcel":
+                        if jugador.dineroInicial >= casilla.fianza:
+                            jugador.dineroInicial = self.accionCasilla(jugador, "Carcel")
+    
+    				# Se imprime el detalle
+                    impresion.write(jugador.nombre+" "+str(jugador.turno)+" "+str(dado)+" "+str(jugador.casilla)+" "+str(casilla.tipo)+" "+str(jugador.dineroInicial)+"\n")
+            
+            #Si me escapo del rango de jugadores, vuelvo a resetear en 0 para que vuelva a leerme desde 0
+            if i >= len(self.jugadores):
+                i = 0
+    
+    		#Se imprime cada vez que los jugadores vayan terminando la partida.
+            if jugador.tableroTerminado == True:
+                impresion.write(str(jugador.nombre)+" "+str(jugador.turno)+" "+str(dado)+" FinJuego\n")
+	
+		# Se declara al ganador con el método de finalizarPartida.
+        ganador = self.finalizarPartida()
+        
+        #Se imprime el término de la partida y al ganador
+        impresion.write("Terminaste la partida! El ganador es: "+str(ganador))
+        
+        #Se cierra el documento de impresión
+        impresion.close()
+	
+    #Se declara la clase la clase partidaTerminada como property
+    @property 
+    def partidaTerminada(self):
+        
+        #Declaro que la continuidad del juego es falsa, a menos que el tablero esté terminado
+        contJuego = False
+        for jugador in self.jugadores:
+            if jugador.tableroTerminado == False:
+                contJuego = True
+                
+        return contJuego	
+
+
+
+# Funcion principal
+if __name__ == "__main__":
+
+	# Este es solo un ejemplo de como deben crearse el objeto juego	
+	# Recuerde que el constructor de la clase partida debe leer el archivo de entrada
+	juego = Partida('entrada.txt')
+
+	# Recuerde que al ejecutar el método simulacion debe generar el archivo de salida
+	juego.simulacion('salida.txt')
